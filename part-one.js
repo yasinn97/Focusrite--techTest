@@ -24,7 +24,7 @@ function createBingoCard(filePath) {
     bingoCard.push(filteredBingoNumbersInt);
   }
 
-  const grid = bingoCard;
+  const markedCard = bingoCard;
   const callNumbers = calledNumbersInt;
 
   // flag variable to track whether the row or column with 5 'X' has been found
@@ -32,18 +32,18 @@ function createBingoCard(filePath) {
 
   // iterate through the callNumbers array
   for (let i = 0; i < callNumbers.length; i++) {
-    // find the element in the grid array and mark it with an 'X'
-    for (let j = 0; j < grid.length; j++) {
-      for (let k = 0; k < grid[j].length; k++) {
-        if (grid[j][k] === callNumbers[i]) {
-          grid[j][k] = 'X';
+    // find the element in the markedCard array and mark it with an 'X'
+    for (let j = 0; j < markedCard.length; j++) {
+      for (let k = 0; k < markedCard[j].length; k++) {
+        if (markedCard[j][k] === callNumbers[i]) {
+          markedCard[j][k] = 'X';
 
           // check if there is a row or column with 5 'X'
           let rowCount = 0;
           let colCount = 0;
-          for (let l = 0; l < grid.length; l++) {
-            if (grid[j][l] === 'X') rowCount++;
-            if (grid[l][k] === 'X') colCount++;
+          for (let l = 0; l < markedCard.length; l++) {
+            if (markedCard[j][l] === 'X') rowCount++;
+            if (markedCard[l][k] === 'X') colCount++;
           }
 
           // if a row or column has 5 'X', set the flag variable to true and break out of the inner loops
@@ -61,5 +61,5 @@ function createBingoCard(filePath) {
   }
 
   // if the flag variable is true, return the marked board
-  if (found) console.log(grid, "This board will get BINGO!");
+  if (found) console.log(markedCard, "This board will get BINGO!");
 }
